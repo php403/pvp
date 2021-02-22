@@ -1,0 +1,19 @@
+Server:
+  RunMode: debug
+Actor:
+
+rpcClient:
+  dial: "1s"
+  timeout: "1s"
+
+tcp:
+  bind: ":8888"
+  sndbuf: 4096
+  rcvbuf: 4096
+  keepalive: false
+  reader: 32
+  readBuf: 1024
+  readBufSize: 8192
+  writer: 32
+  writeBuf: 1024
+  writeBufSize: 8192
