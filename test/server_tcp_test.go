@@ -17,7 +17,7 @@ func ClientTest() {
 	//3秒之后发起测试请求，给服务端开启服务的机会
 	time.Sleep(3 * time.Second)
 
-	conn,err := net.Dial("tcp", "127.0.0.1:7777")
+	conn,err := net.Dial("tcp", "127.0.0.1:6666")
 	if err != nil {
 		fmt.Println("client start err, exit!")
 		return
@@ -48,9 +48,7 @@ func TestServer(t *testing.T) {
 	flag.Parse()
 	conf.Init()
 	srv := comet.NewServer(conf.Conf)
-
-
 	_ = comet.InitTCP(srv,runtime.NumCPU())
 
-	go ClientTest()
+	ClientTest()
 }
