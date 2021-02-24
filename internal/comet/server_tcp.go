@@ -19,7 +19,6 @@ func InitTCP(server *Server,accept int)(err error) {
 		addr     *net.TCPAddr
 	)
 	bind = server.c.Tcp.Bind
-	fmt.Printf("[START] Server listenner at IP: %s, Port %d, is starting\n", bind)
 	if addr, err = net.ResolveTCPAddr("tcp", bind); err != nil {
 		log.Errorf("net.ResolveTCPAddr(tcp, %s) error(%v)", bind, err)
 		return
@@ -38,9 +37,7 @@ func InitTCP(server *Server,accept int)(err error) {
 
 func CallBackToClient(conn *net.TCPConn, data []byte, cnt int) error {
 	//回显业务
-	fmt.Println("[Conn Handle] CallBackToClient ... ")
 	if _, err := conn.Write(data[:cnt]); err !=nil {
-		fmt.Println("write back buf err ", err)
 		return errors.New("CallBackToClient error")
 	}
 	return nil
@@ -80,11 +77,8 @@ func acceptTCP(server *Server, lis *net.TCPListener) {
 					fmt.Println("recv buf err ", err)
 					continue
 				}
-				//回显
-				if _, err := conn.Write(buf[:cnt]); err !=nil {
-					fmt.Println("write back buf err ", err)
-					continue
-				}
+				fmt.Println("cnt data :",cnt)
+
 				dealConn := NewConnection(conn,cid,CallBackToClient,server.Router)
 				cid ++
 
