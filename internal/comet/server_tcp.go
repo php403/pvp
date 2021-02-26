@@ -28,7 +28,6 @@ func InitTCP(server *Server,accept int)(err error) {
 		return
 	}
 	log.Infof("start tcp listen: %s", bind)
-	// split N core accept
 	for i := 0; i < accept; i++ {
 		go acceptTCP(server, listener)
 	}
