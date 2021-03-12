@@ -14,8 +14,6 @@ import (
 	"time"
 )
 
-
-
 func main()  {
 	flag.Parse()
 	conf.Init()
